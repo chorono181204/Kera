@@ -28,7 +28,7 @@
     "@uiw/react-md-editor": "^4.0.6",
     "axios": "^1.5.1",
     "date-fns": "^2.30.0",
-    "framer-motion": "^12.15.0",
+    "framer-motion": "^12.16.0",
     "lodash": "^4.17.21",
     "material-ui-confirm": "^4.0.0",
     "moment": "^2.30.1",
