@@ -1,0 +1,55 @@
+services:
+  server:
+    build: ./server
+    image: project-management-server
+    container_name: project-management-server
+    ports:
+      - "8386:8386"
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/project_management?useSSL=false&serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=123456
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_SHOW_SQL=true
+      - SPRING_MAIL_HOST=smtp.gmail.com
+      - SPRING_MAIL_PORT=587
+      - SPRING_MAIL_USERNAME=caitovu.dev@gmail.com
+      - SPRING_MAIL_PASSWORD=jxvrtjfqhkoiszbg
+      - JWT_SIGNER_KEY=1TjXchw5FloESb63Kc+DFhTARvpWL4jUGCwfGWxuG5SIf/1y/LgJxHnMqaF6A/ij
+      - JWT_VALID_DURATION=3600
+      - JWT_REFRESHABLE_DURATION=3600000
+    volumes:
+      - ./server:/app
+      - /app/target
+    depends_on:
+      - mysql
+
+  client:
+    build: ./client
+    image: project-management-client
+    container_name: project-management-client
+    ports:
+      - "5173:5173"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8386
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+    depends_on:
+      - server
+
+  mysql:
+    image: mysql:8.0
+    container_name: project-management-mysql
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_DATABASE=project_management
+    volumes:
+      - mysql_data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+
+volumes:
+  mysql_data: 

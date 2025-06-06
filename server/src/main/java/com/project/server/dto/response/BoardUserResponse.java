@@ -1,0 +1,20 @@
+package com.project.server.dto.response;
+
+import lombok.*;
+import lombok.experimental.FieldDefaults;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class BoardUserResponse {
+    String id;
+    String role;
+    String createdAt;
+    String updatedAt;
+    String createdBy;
+    String updatedBy;
+    UserResponse user;
+    String status; // e.g., "PENDING", "ACCEPTED", "REJECTED"
+}
