@@ -29,8 +29,8 @@ export default defineConfig({
       },
     }),
     svgr(),
-    resolve({
-      extensions: ['.js', '.jsx', '.ts', '.tsx', '.json','mjs'],
-    }),
   ],
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.mjs'],
+  },
 })
