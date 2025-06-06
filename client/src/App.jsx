@@ -79,6 +79,7 @@ function App() {
       });
     };
 
+    
     stompClient.activate();
     return () => {
       stompClient.deactivate();
