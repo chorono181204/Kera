@@ -18,7 +18,7 @@ import { updateCardInBoard, updateCurrentActiveBoard } from './redux/activeBoard
 import { Navigate, Outlet } from 'react-router-dom';
 import Landing from './pages/Landing';
 import VerifyAccount from './pages/Landing/VerifyAccount';
-import UsersAdmin from './pages/Admin/UsersAdmin';
+import UsersAdmin from './pages/admin/UsersAdmin';
 import { ConfirmProvider } from 'material-ui-confirm';
 const ProtectedRoute = ({ user }) => {
   if (!user) return <Navigate to='/login' replace={true} />
@@ -79,7 +79,7 @@ function App() {
       });
     };
 
-    
+
     stompClient.activate();
     return () => {
       stompClient.deactivate();
