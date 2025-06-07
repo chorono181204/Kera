@@ -4,13 +4,8 @@ import svgr from 'vite-plugin-svgr'
 import path from 'path'
 import { resolve } from 'path'
 
-
 // https://vitejs.dev/config/
 export default defineConfig({
-  // Cho phép thằng Vite sử dụng được process.env, mặc định thì không mà sẽ phải dùng import.meta.env
-  // Github issue: https://github.com/vitejs/vite/issues/1973
-
-  // Deployment: https://vitejs.dev/guide/static-deploy#vercel
   define: {
     global: 'window',
   },
@@ -29,5 +24,8 @@ export default defineConfig({
       },
     }),
     svgr(),
-  ]
+  ],
+  server: {
+    allowedHosts: ['kerastudfun.fun', 'www.kerastudfun.fun'],
+  }
 })
